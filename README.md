@@ -6,9 +6,12 @@ Auth0 will manage the profile creation
 Username-Password based authentication
 
 App bar
+
 The left side of the bar should have navigation links to all the routes 
+
 The right side of the bar should have a clickable profile image which would open a dropdown with link to User profile route and button for logout.
 Routes
+
 Wireframes - https://drive.google.com/file/d/1EL0-_cgGDivw5CJkStZG-gqsQrUbuSmz/view?usp=sharing 
 SignIn/SignUp
 Identity provider - Auth0
