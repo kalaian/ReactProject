@@ -1,31 +1,24 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 
-class ItemCard extends Component {
-  render() {
-    return (
-      <StyledCard>
-        <div className="Picture">
-          <div className="color-overlay">
-            <div className="movie-share">
-              <a className="movie-share__icon" href="#">
-                <span className="add-favourites">Add to Favourites</span>
-              </a>
-            </div>
-            <div className="Card-Bot">
-              <h1>{"(Hero name)"}</h1>
-              <p>
-                {
-                  "Details here, Details here, Details here, Details here, Details here, Details here, Details here, Details here, Details here, Details here, Details here, Details here, Details here "
-                }
-              </p>
-            </div>
+const ItemCard = (props) => (
+    <StyledCard>
+      <div className="Picture">
+        <div className="color-overlay">
+          <div className="movie-share">
+            <a className="movie-share__icon" href="#">
+              <span className="add-favourites">Add to Favourites</span>
+            </a>
+          </div>
+          <div className="Card-Bot">
+            <h1>{props.name}</h1>
+            <p>{props.description}</p>
           </div>
         </div>
-      </StyledCard>
-    );
-  }
-}
+      </div>
+    </StyledCard>
+)
+
 
 const StyledCard = styled.div`
   display: inline-block
@@ -100,4 +93,5 @@ const StyledCard = styled.div`
     }
   }
 `;
+
 export default ItemCard;
