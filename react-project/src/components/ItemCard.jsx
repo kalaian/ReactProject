@@ -1,27 +1,31 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 
-const ItemCard = (props) => (
-    <StyledCard>
-      <div className="Picture">
-        <div className="color-overlay">
-          <div className="movie-share">
-            <a className="movie-share__icon" href="#">
-              <span className="add-favourites">Add to Favourites</span>
-            </a>
-          </div>
-          <div className="Card-Bot">
-            <h1>{props.name}</h1>
-            <p>{props.description}</p>
-          </div>
+const ItemCard = props => (
+  <StyledCard>
+    <img
+      className="char-image"
+      src={`${props.thumbnail.path}.${props.thumbnail.extension}`}
+    />
+    <div className="Picture">
+      <div className="color-overlay">
+        <div className="movie-share">
+          <a className="movie-share__icon" href="#">
+            <span className="add-favourites">Add to Favourites</span>
+          </a>
+        </div>
+        <div className="Card-Bot">
+          <h1>{props.name}</h1>
+          <p>{props.description}</p>
         </div>
       </div>
-    </StyledCard>
-)
-
+    </div>
+  </StyledCard>
+);
 
 const StyledCard = styled.div`
-  display: inline-block
+  position: relative;
+  display: inline-block;
   margin: 20px;
   height: 400px;
   min-width: 300px;
@@ -53,13 +57,16 @@ const StyledCard = styled.div`
     color: white;
     text-decoration: none;
   }
-  .Picture {
+  .char-image {
+    width: 100%;
     height: 100%;
-    background-image: url(http://i.annihil.us/u/prod/marvel/i/mg/9/c0/527bb7b37ff55.jpg);
-    background-size: contain;
-    background-position: top;
-    border-radius: inherit;
-    background-repeat: no-repeat;
+  }
+  .char-image + .Picture {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
   }
 
   .movie-share {
