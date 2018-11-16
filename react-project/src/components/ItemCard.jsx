@@ -12,7 +12,9 @@ const ItemCard = props => (
         <div className="movie-share">
           <a className="movie-share__icon" href="#">
             <span className="add-favourites">Add to Favourites</span>
-            <br></br>
+          </a>
+          <br />
+          <a className="movie-share__icon" href="#">
             <span className="details">Details</span>
           </a>
         </div>
@@ -58,20 +60,14 @@ const StyledCard = styled.div`
   .add-favourites {
     color: white;
     text-decoration: none;
-    text-shadow:
-   -1px -1px 0 #000,  
-    1px -1px 0 #000,
-    -1px 1px 0 #000,
-     1px 1px 0 #000;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+      1px 1px 0 #000;
   }
-  .details{
+  .details {
     color: white;
     text-decoration: none;
-    text-shadow:
-   -1px -1px 0 #000,  
-    1px -1px 0 #000,
-    -1px 1px 0 #000,
-     1px 1px 0 #000;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+      1px 1px 0 #000;
   }
   .char-image {
     width: 100%;
@@ -89,19 +85,6 @@ const StyledCard = styled.div`
     padding: 1em;
     text-align: right;
     text-decoration: none;
-  }
-
-  .movie-share__icon i {
-    font-size: 1.2em;
-    margin-left: 0.5em;
-    color: #ffffff;
-    mix-blend-mode: lighten;
-    opacity: 0.6;
-  }
-
-  .movie-share__icon i:hover {
-    opacity: 1;
-    mix-blend-mode: lighten;
   }
 
   .Card-Bot {
