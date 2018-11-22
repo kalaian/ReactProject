@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ItemCard from './ItemCard';
+import HeroDetails from './HeroDetails';
 
 export default class CardList extends Component {
 	state = {

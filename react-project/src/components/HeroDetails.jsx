@@ -1,36 +1,35 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 
-const ItemCard = props => (
-  <StyledCard>
-    <img
-      className="char-image"
-      src={`${props.thumbnail.path}.${props.thumbnail.extension}`}
-          />
-    <div className="Picture">
-      <div className="color-overlay">
-        <div className="movie-share">
-          <a className="movie-share__icon" href="#">
-            <span className="add-favourites">Add to Favourites</span>
-          </a>
-          <br />
-          <a className="movie-share__icon">
-            <Link to= {`/details/${props.id}`}>
-              <span className="details">Details</span>
-            </Link>
-          </a>
-        </div>
-        <div className="Card-Bot">
-          <h1>{props.name}</h1>
-          <p>{props.description}</p>
-        </div>
-      </div>
-    </div>
-  </StyledCard>
-);
+export class HeroDetails extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      results: [],
+      id: null
+    };
+  }
+  componentDidMount() {
+    fetch(
+      "https://gateway.marvel.com/v1/public/characters?apikey=80a0c3d7955eb762515f55d1412ed8cb"
+    )
+      .then(response => response.json())
+      .then(json =>
+        this.setState({
+          results: json.data.results
+        })
+      );
+  }
+  render() {
+    return (
+      <DetailsCard>
+        <hi>{this.state.results.name}</hi>
+      </DetailsCard>
+    );
+  }
+}
 
-const StyledCard = styled.div`
+const DetailsCard = styled.div`
   position: relative;
   display: inline-block;
   margin: 20px;
@@ -102,5 +101,4 @@ const StyledCard = styled.div`
     }
   }
 `;
-
-export default ItemCard;
+export default HeroDetails;
