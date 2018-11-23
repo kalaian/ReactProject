@@ -1,34 +1,60 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import styled from "styled-components";
 
 export class HeroDetails extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      results: [],
-      id: null
-    };
+  state = {
+    results: [],
+    image: []
+  };
+  componentWillMount() {
+    this.loadCharactersDetails();
   }
-  componentDidMount() {
+
+  loadCharactersDetails = () => {
     fetch(
-      "https://gateway.marvel.com/v1/public/characters?apikey=80a0c3d7955eb762515f55d1412ed8cb"
+      `https://gateway.marvel.com:443/v1/public/characters/${
+        this.props.match.params.id
+      }?apikey=80a0c3d7955eb762515f55d1412ed8cb`
     )
       .then(response => response.json())
-      .then(json =>
+      .then(hero =>
+        // console.log(hero.data.results[0].thumbnail)
         this.setState({
-          results: json.data.results
+          results: hero.data.results[0].comics,
+          image: hero.data.results[0].thumbnail
         })
       );
-  }
+  };
+
   render() {
     return (
+      <DetailsBody>
+      <h1>Hero comics details</h1>
       <DetailsCard>
-        <hi>{this.state.results.name}</hi>
+        <img
+          className="char-image"
+          src={`${this.state.image.path}.${this.state.image.extension}`}
+        />
+        <div className="Picture">
+          <div className="color-overlay">
+            <div className="movie-share" />
+            <div className="Card-Bot">
+              <h1>Available: {this.state.results.available}</h1>
+              <p>ResourceURI: <a>{this.state.results.collectionURI}</a></p>
+            </div>
+          </div>
+        </div>
       </DetailsCard>
+      </DetailsBody>
     );
   }
 }
 
+const DetailsBody = styled.div`
+  h1{
+    text-align: center;
+  }
+`
 const DetailsCard = styled.div`
   position: relative;
   display: inline-block;
@@ -92,6 +118,7 @@ const DetailsCard = styled.div`
   .Card-Bot {
     min-height: 45%;
     padding: 0 15px 15px;
+    word-wrap: break-word
 
     p {
       color: #b0b0b0;
