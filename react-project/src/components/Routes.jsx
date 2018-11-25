@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom'
 import CardList from './CardList'
 import Favs from './Favs';
 import HeroDetails from './HeroDetails';
+import Callback from './Callback';
 
 
 
@@ -11,6 +12,7 @@ const Routes = () => (
     <Route path='/' exact component={CardList} />
     <Route path='/favs' component={Favs} />
     <Route path='/details/:id' component={HeroDetails}/>
+    <Route path='/callback' component={Callback}/>
   </Switch>
 )
 
