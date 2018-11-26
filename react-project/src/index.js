@@ -6,6 +6,7 @@ import { BrowserRouter } from "react-router-dom";
 import SignUp from "./components/SignUp";
 import Callback from "./components/Callback";
 import Auth from "./components/Auth";
+import SignIn from "./components/SignIn";
 
 const auth = new Auth();
 let state = {};
@@ -13,7 +14,7 @@ window.setState = changes => {
   state = Object.assign({}, state, changes);
   ReactDOM.render(
     <BrowserRouter>
-      <Callback {...state} />
+      <SignIn {...state} />
     </BrowserRouter>,
     document.getElementById("root")
   );

@@ -4,7 +4,7 @@ export default class Callback extends Component {
   render() {
     return (
       <div>
-       <button onClick={this.props.auth.login}>Log in</button>
+        <h1>Callback is here</h1>
       </div>
     )
   }
