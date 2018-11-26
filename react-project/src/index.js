@@ -3,8 +3,6 @@ import ReactDOM from "react-dom";
 import * as serviceWorker from "./serviceWorker";
 import AppMain from "./components/AppMain";
 import { BrowserRouter } from "react-router-dom";
-import Callback from "./components/Callback";
-import Auth from "./components/Auth";
 
 
 

@@ -28,7 +28,7 @@ class NavBar extends Component {
               <a className="login" onClick={() => this.state.auth.login()}>
                 Log in
               </a>
-              <a href="/">Logout</a>
+              <a className="login" onClick={() => this.state.auth.logout()}>Logout</a>
             </div>
           </div>
           <span className="email">Hello {"(email will go here)"}</span>

@@ -10,7 +10,6 @@ const Routes = () => (
     <Route path='/' component={CardList} />
     <Route path='/favs' component={Favs} />
     <Route path='/details/:id' component={HeroDetails}/>
-    <Route path='/callback' component={Callback}/>
   </Switch>
 )
 
