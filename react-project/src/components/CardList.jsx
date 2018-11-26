@@ -3,10 +3,12 @@ import ItemCard from './ItemCard';
 import HeroDetails from './HeroDetails';
 
 export default class CardList extends Component {
+	
 	state = {
 		results: []
 	};
-	componentWillMount() {
+
+	componentDidMount() {
 		this.loadCharacters();
 	}
 

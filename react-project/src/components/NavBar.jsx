@@ -1,31 +1,39 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import Auth from "./Auth";
 
 class NavBar extends Component {
+  state = {
+    auth: new Auth()
+  };
+
   render() {
     return (
-        <StyledNavBar>
-            <div>
-                <Link to="/" className="active">
-                    Items
-                </Link>
-            
-                <Link to="/favs">Favs</Link>
-            
-                <div className="dropdown">
-                <button className="dropbtn">
-                    Profile/Logout
-                    <i className="fa fa-caret-down" />
-                </button>
-                <div className="dropdown-content">
-                    <a href="/">Profile</a>
-                    <a href="/">Logout</a>
-                </div>
-                </div>
-                <span className="email">Hello {"(email will go here)"}</span>
+      <StyledNavBar>
+        <div>
+          <Link to="/" className="active">
+            Items
+          </Link>
+
+          <Link to="/favs">Favs</Link>
+
+          <div className="dropdown">
+            <button className="dropbtn">
+              Profile/Login/Logout
+              <i className="fa fa-caret-down" />
+            </button>
+            <div className="dropdown-content">
+              <a href="/">Profile</a>
+              <a className="login" onClick={() => this.state.auth.login()}>
+                Log in
+              </a>
+              <a href="/">Logout</a>
             </div>
-        </StyledNavBar>
+          </div>
+          <span className="email">Hello {"(email will go here)"}</span>
+        </div>
+      </StyledNavBar>
     );
   }
 }
@@ -45,6 +53,9 @@ const StyledNavBar = styled.div`
       background-color: #555;
       color: white;
     }
+  }
+  .login{
+    cursor: pointer;
   }
   .email {
     float: right;

@@ -5,11 +5,9 @@ import Favs from './Favs';
 import HeroDetails from './HeroDetails';
 import Callback from './Callback';
 
-
-
 const Routes = () => (
   <Switch>
-    <Route path='/' exact component={CardList} />
+    <Route path='/' component={CardList} />
     <Route path='/favs' component={Favs} />
     <Route path='/details/:id' component={HeroDetails}/>
     <Route path='/callback' component={Callback}/>
