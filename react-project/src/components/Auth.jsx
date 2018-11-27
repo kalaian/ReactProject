@@ -1,5 +1,7 @@
 import auth0 from 'auth0-js';
 import Routes from './Routes';
+import history from './history';
+
 
 
 
@@ -20,7 +22,8 @@ export default class Auth {
 
   logout() {
     localStorage.removeItem('access_token');
-    localStorage.removeItem('id_token');
+    localStorage.removeItem('id_token');               
     localStorage.removeItem('expires_at');
+    history.replace('/');
   }
 }
