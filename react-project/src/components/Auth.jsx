@@ -30,7 +30,7 @@ export default class Auth {
         history.replace("/");
       } else if (err) {
         history.replace("/");
-        console.log(err);
+        alert(err);
       }
     });
   }
