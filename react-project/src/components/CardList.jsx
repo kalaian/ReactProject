@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
 import ItemCard from './ItemCard';
 import HeroDetails from './HeroDetails';
+import Auth from './Auth'
 
 export default class CardList extends Component {
 	
 	state = {
 		results: []
 	};
+
+	componentWillMount() {
+		if(!Auth.isAuthenticated()) {
+		  this.props.history.push('/not-loged')
+		}
+	  }
 
 	componentDidMount() {
 		this.loadCharacters();

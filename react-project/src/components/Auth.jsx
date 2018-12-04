@@ -12,18 +12,18 @@ export default class Auth {
     scope: "openid"
   });
 
-  login() {
+  static login() {
     this.auth0.authorize();
   }
 
-  logout() {
+  static logout() {
     localStorage.removeItem("access_token");
     localStorage.removeItem("id_token");
     localStorage.removeItem("expires_at");
     history.replace("/");
   }
 
-  handleAuthentication() {
+  static handleAuthentication() {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
@@ -35,7 +35,7 @@ export default class Auth {
     });
   }
 
-  setSession(authResult) {
+  static setSession(authResult) {
     let expiresAt = JSON.stringify(
       authResult.expiresIn * 1000 + new Date().getTime()
     );
@@ -45,7 +45,7 @@ export default class Auth {
     history.replace("/home");
   }
 
-  isAuthenticated() {
+  static isAuthenticated() {
     let expiresAt = JSON.parse(localStorage.getItem("expires_at"));
     return new Date().getTime() < expiresAt;
   }
