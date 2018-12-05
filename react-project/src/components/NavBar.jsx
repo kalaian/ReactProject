@@ -4,9 +4,6 @@ import { Link } from "react-router-dom";
 import Auth from "./Auth";
 
 class NavBar extends Component {
-  state = {
-    auth: new Auth()
-  };
 
   render() {
     return (
@@ -25,10 +22,12 @@ class NavBar extends Component {
             </button>
             <div className="dropdown-content">
               <a href="/">Profile</a>
-              <a className="login" onClick={() => this.state.auth.login()}>
+              <a className="login" 
+              onClick={() => Auth.login()}
+              >
                 Log in
               </a>
-              <a className="login" onClick={() => this.state.auth.logout()}>Logout</a>
+              <a className="login" onClick={() => Auth.logout()}>Logout</a>
             </div>
           </div>
           <span className="email">Hello {"(email will go here)"}</span>

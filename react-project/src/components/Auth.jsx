@@ -2,7 +2,7 @@ import auth0 from "auth0-js";
 import Routes from "./Routes";
 import history from "./history";
 
-export default class Auth {
+ class Auth {
   auth0 = new auth0.WebAuth({
     domain: "kaloyan-tomov.eu.auth0.com",
     clientID: "PFwshUhKGzkhvMOBcISWb31JRnhM61Su",
@@ -12,18 +12,18 @@ export default class Auth {
     scope: "openid"
   });
 
-  static login() {
+  login() {
     this.auth0.authorize();
   }
 
-  static logout() {
+  logout() {
     localStorage.removeItem("access_token");
     localStorage.removeItem("id_token");
     localStorage.removeItem("expires_at");
     history.replace("/");
   }
 
-  static handleAuthentication() {
+  handleAuthentication() {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
@@ -35,7 +35,7 @@ export default class Auth {
     });
   }
 
-  static setSession(authResult) {
+  setSession(authResult) {
     let expiresAt = JSON.stringify(
       authResult.expiresIn * 1000 + new Date().getTime()
     );
@@ -45,8 +45,10 @@ export default class Auth {
     history.replace("/home");
   }
 
-  static isAuthenticated() {
+   isAuthenticated() {
     let expiresAt = JSON.parse(localStorage.getItem("expires_at"));
     return new Date().getTime() < expiresAt;
   }
 }
+
+export default new Auth;

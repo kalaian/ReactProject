@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import styled from "styled-components";
+import Auth from "./Auth"
 
 export class HeroDetails extends Component {
   state = {
