@@ -2,7 +2,7 @@ import auth0 from "auth0-js";
 import Routes from "./Routes";
 import history from "./history";
 
- class Auth {
+class Auth {
   auth0 = new auth0.WebAuth({
     domain: "kaloyan-tomov.eu.auth0.com",
     clientID: "PFwshUhKGzkhvMOBcISWb31JRnhM61Su",
@@ -11,6 +11,10 @@ import history from "./history";
     responseType: "token id_token",
     scope: "openid"
   });
+  
+  constructor() {
+    this.getProfile = this.getProfile.bind(this);
+  }
 
   login() {
     this.auth0.authorize();
@@ -45,10 +49,29 @@ import history from "./history";
     history.replace("/home");
   }
 
-   isAuthenticated() {
+  isAuthenticated() {
     let expiresAt = JSON.parse(localStorage.getItem("expires_at"));
     return new Date().getTime() < expiresAt;
   }
+
+  userProfile;
+  getAccessToken() {
+    const accessToken = localStorage.getItem("access_token");
+    if (!accessToken) {
+      throw new Error("No Access Token found");
+    }
+    return accessToken;
+  }
+
+  getProfile(cb) {
+    let accessToken = this.getAccessToken();
+    this.auth0.client.userInfo(accessToken, (err, profile) => {
+      if (profile) {
+        this.userProfile = profile;
+      }
+      cb(err, profile);
+    });
+  }
 }
 
-export default new Auth;
+export default new Auth();
