@@ -9,7 +9,7 @@ class Auth {
     redirectUri: "http://localhost:3000",
     audience: "https://kaloyan-tomov.eu.auth0.com/userinfo",
     responseType: "token id_token",
-    scope: "openid profile"
+    scope: "openid email profile"
   });
   
   constructor() {

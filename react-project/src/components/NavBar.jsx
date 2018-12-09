@@ -11,7 +11,6 @@ class NavBar extends Component {
           <Link to="/" className="active">
             Items
           </Link>
-
           <Link to="/favs">Favs</Link>
 
           <div className="dropdown">
@@ -29,7 +28,6 @@ class NavBar extends Component {
               </a>
             </div>
           </div>
-          <span className="email">Hello {"(email will go here)"}</span>
         </div>
       </StyledNavBar>
     );

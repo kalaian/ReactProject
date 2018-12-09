@@ -18,6 +18,7 @@ class Profile extends Component {
 
   render() {
     const { profile } = this.state;
+    this.state.profile = this.props;
     return (
       <ProfileBody>
         <h1>Profile Info</h1>
@@ -36,6 +37,9 @@ class Profile extends Component {
                 </p>
                 <p className="nickName">
                   Gender: {profile.gender}
+                </p>
+                <p className="nickName">
+                  Email: {profile.email}
                 </p>
               </div>
             </div>
