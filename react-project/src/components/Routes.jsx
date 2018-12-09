@@ -5,6 +5,7 @@ import Favs from "./Favs";
 import HeroDetails from "./HeroDetails";
 import PrivateRoute from "./PrivateRoutes";
 import NotLogged from "./NotLoged";
+import Profile from "./Profile"
 
 
 const Routes = () => (
@@ -13,6 +14,7 @@ const Routes = () => (
     <Route path="/not-loged" component={NotLogged} />
     <PrivateRoute path="/favs" component={Favs} />
     <PrivateRoute path="/details/:id" component={HeroDetails} />
+    <PrivateRoute path="/profile" component={Profile}/>
   </Switch>
 );
 

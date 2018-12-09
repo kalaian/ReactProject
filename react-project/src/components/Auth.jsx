@@ -9,7 +9,7 @@ class Auth {
     redirectUri: "http://localhost:3000",
     audience: "https://kaloyan-tomov.eu.auth0.com/userinfo",
     responseType: "token id_token",
-    scope: "openid"
+    scope: "openid profile"
   });
   
   constructor() {
@@ -25,6 +25,7 @@ class Auth {
     localStorage.removeItem("id_token");
     localStorage.removeItem("expires_at");
     history.replace("/");
+    this.userProfile = null;
   }
 
   handleAuthentication() {

@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import Auth from "./Auth";
 
 class NavBar extends Component {
-
   render() {
     return (
       <StyledNavBar>
@@ -21,13 +20,13 @@ class NavBar extends Component {
               <i className="fa fa-caret-down" />
             </button>
             <div className="dropdown-content">
-              <a href="/">Profile</a>
-              <a className="login" 
-              onClick={() => Auth.login()}
-              >
+              <Link to="/profile">Profile</Link>
+              <a className="login" onClick={() => Auth.login()}>
                 Log in
               </a>
-              <a className="login" onClick={() => Auth.logout()}>Logout</a>
+              <a className="login" onClick={() => Auth.logout()}>
+                Logout
+              </a>
             </div>
           </div>
           <span className="email">Hello {"(email will go here)"}</span>
@@ -53,7 +52,7 @@ const StyledNavBar = styled.div`
       color: white;
     }
   }
-  .login{
+  .login {
     cursor: pointer;
   }
   .email {
