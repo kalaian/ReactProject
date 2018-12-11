@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import styled from "styled-components";
-import Auth from "./Auth"
+import Auth from "./Auth";
 
 export class HeroDetails extends Component {
   state = {
@@ -30,32 +30,34 @@ export class HeroDetails extends Component {
   render() {
     return (
       <DetailsBody>
-      <h1>Hero comics details</h1>
-      <DetailsCard>
-        <img
-          className="char-image"
-          src={`${this.state.image.path}.${this.state.image.extension}`}
-        />
-        <div className="Picture">
-          <div className="color-overlay">
-            <div className="movie-share" />
-            <div className="Card-Bot">
-              <h1>Available: {this.state.results.available}</h1>
-              <p>ResourceURI: <a>{this.state.results.collectionURI}</a></p>
+        <h1>Hero comics details</h1>
+        <DetailsCard>
+          <img
+            className="char-image"
+            src={`${this.state.image.path}.${this.state.image.extension}`}
+          />
+          <div className="Picture">
+            <div className="color-overlay">
+              <div className="movie-share" />
+              <div className="Card-Bot">
+                <h1>Available: {this.state.results.available}</h1>
+                <p>
+                  ResourceURI: <a>{this.state.results.collectionURI}</a>
+                </p>
+              </div>
             </div>
           </div>
-        </div>
-      </DetailsCard>
+        </DetailsCard>
       </DetailsBody>
     );
   }
 }
 
 const DetailsBody = styled.div`
-  h1{
+  h1 {
     text-align: center;
   }
-`
+`;
 const DetailsCard = styled.div`
   position: relative;
   display: inline-block;
@@ -119,9 +121,7 @@ const DetailsCard = styled.div`
   .Card-Bot {
     min-height: 45%;
     padding: 0 15px 15px;
-    word-wrap: break-word
-
-    p {
+    word-wrap: break-word p {
       color: #b0b0b0;
     }
     h1 {

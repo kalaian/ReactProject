@@ -11,8 +11,8 @@ const ItemCard = props => (
     <div className="Picture">
       <div className="color-overlay">
         <div className="movie-share">
-          <a className="movie-share__icon" href="#">
-            <span className="add-favourites">Add to Favourites</span>
+          <a className="movie-share__icon" href="#" onClick={() => localStorage.setItem("hero_id", props.id)}>
+            <span className="add-favourites" >Add to Favourites</span>
           </a>
           <br />
           <a className="movie-share__icon">
