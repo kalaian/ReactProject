@@ -1,5 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 import styled from "styled-components";
+import ItemCard from "./ItemCard";
 
 class Favs extends Component {
   state = {
@@ -11,46 +12,50 @@ class Favs extends Component {
   }
 
   loadCharactersDetails = () => {
-    const idFromStorage = localStorage.getItem("hero_id");
+    const idFromStorage = JSON.parse(localStorage.getItem("hero_ids"));
+    console.log(idFromStorage);
     fetch(
-      `https://gateway.marvel.com:443/v1/public/characters/${
-        idFromStorage
-      }?apikey=80a0c3d7955eb762515f55d1412ed8cb`
+      `https://gateway.marvel.com:443/v1/public/characters/${idFromStorage}?apikey=80a0c3d7955eb762515f55d1412ed8cb`
     )
       .then(response => response.json())
       .then(hero =>
-        this.setState({
-          results: hero.data.results[0],
-          image: hero.data.results[0].thumbnail,
-        })
+        console.log(hero)
+        // this.setState({
+        //   results: hero.data.results[0],
+        //   image: hero.data.results[0].thumbnail
+        // })
       );
   };
 
   render() {
     return (
       <FavsBody>
-      <h1>Hero comics details</h1>
-      <FavsCard>
-      <img
-      className="char-image"
-      src={`${this.state.image.path}.${this.state.image.extension}`}
+        <h1>Hero comics details</h1>
+        <FavsCard>
+          <img
+            className="char-image"
+            src={`${this.state.image.path}.${this.state.image.extension}`}
           />
-    <div className="Picture">
-      <div className="color-overlay">
-        <div className="movie-share">
-        <a className="movie-share__icon" href="#" onClick={() => localStorage.removeItem("hero_id")} >
-            <span className="add-favourites" >Remove from favourites</span>
-          </a>
-          <br />
-        </div>
-        <div className="Card-Bot">
-          <h1>{this.state.results.name}</h1>
-          <p>{this.state.results.description}</p>
-        </div>
-      </div>
-    </div>
-      </FavsCard>
-    </FavsBody>
+          <div className="Picture">
+            <div className="color-overlay">
+              <div className="movie-share">
+                <a
+                  className="movie-share__icon"
+                  href="#"
+                  onClick={() => localStorage.removeItem("hero_id")}
+                >
+                  <span className="add-favourites">Remove from favourites</span>
+                </a>
+                <br />
+              </div>
+              <div className="Card-Bot">
+                <h1>{this.state.results.name}</h1>
+                <p>{this.state.results.description}</p>
+              </div>
+            </div>
+          </div>
+        </FavsCard>
+      </FavsBody>
     );
   }
 }

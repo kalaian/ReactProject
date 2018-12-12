@@ -1,34 +1,61 @@
-import React, { Component } from "react";
+import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-const ItemCard = props => (
-  <StyledCard>
-    <img
-      className="char-image"
-      src={`${props.thumbnail.path}.${props.thumbnail.extension}`}
-          />
-    <div className="Picture">
-      <div className="color-overlay">
-        <div className="movie-share">
-          <a className="movie-share__icon" href="#" onClick={() => localStorage.setItem("hero_id", props.id)}>
-            <span className="add-favourites" >Add to Favourites</span>
-          </a>
-          <br />
-          <a className="movie-share__icon">
-            <Link to= {`/details/${props.id}`}>
-              <span className="details">Details</span>
-            </Link>
-          </a>
+class ItemCard extends React.Component {
+  componentDidMount() {
+    if (JSON.parse(localStorage.getItem("hero_ids")).length < 0) {
+      localStorage.setItem("hero_ids", JSON.stringify([]));
+    }
+  }
+
+  saveDataToLocalStorage = id => {
+    let heroIdsArr = JSON.parse(localStorage.getItem("hero_ids"));
+
+    if (heroIdsArr.includes(id)) {
+      heroIdsArr.splice(heroIdsArr.indexOf(id), 1)
+    } else {
+      heroIdsArr.push(id);
+    }
+
+    localStorage.setItem("hero_ids", JSON.stringify(heroIdsArr));
+  };
+
+  render() {
+    return (
+      <StyledCard>
+        <img
+          className="char-image"
+          src={`${this.props.thumbnail.path}.${this.props.thumbnail.extension}`}
+        />
+        <div className="Picture">
+          <div className="color-overlay">
+            <div className="movie-share">
+              <a
+                className="movie-share__icon"
+                href="#"
+                onClick={() => this.saveDataToLocalStorage(this.props.id)}
+              >
+                <span className="add-favourites">Add to Favourites</span>
+              </a>
+              <br />
+              <a className="movie-share__icon">
+                <Link to={`/details/${this.props.id}`}>
+                  <span className="details">Details</span>
+                </Link>
+              </a>
+            </div>
+            <div className="Card-Bot">
+              <h1>{this.props.name}</h1>
+              <p>{this.props.description}</p>
+            </div>
+            {/* <button onClick={() => this.saveDataToLocalStorage(this.props.id)}>Remove from favourites</button> */}
+          </div>
         </div>
-        <div className="Card-Bot">
-          <h1>{props.name}</h1>
-          <p>{props.description}</p>
-        </div>
-      </div>
-    </div>
-  </StyledCard>
-);
+      </StyledCard>
+    );
+  }
+}
 
 const StyledCard = styled.div`
   position: relative;

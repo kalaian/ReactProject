@@ -7,6 +7,8 @@ export class HeroDetails extends Component {
     results: [],
     image: []
   };
+
+
   componentWillMount() {
     this.loadCharactersDetails();
   }
