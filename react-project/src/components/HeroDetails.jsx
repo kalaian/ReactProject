@@ -19,7 +19,6 @@ export class HeroDetails extends Component {
     )
       .then(response => response.json())
       .then(hero =>
-        // console.log(hero.data.results[0].thumbnail)
         this.setState({
           results: hero.data.results[0].comics,
           image: hero.data.results[0].thumbnail
