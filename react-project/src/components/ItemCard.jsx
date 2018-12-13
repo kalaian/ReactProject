@@ -37,11 +37,9 @@ class ItemCard extends React.Component {
                 onClick={() => this.saveDataToLocalStorage(this.props.id)}
               />
               <br />
-              <a href="/" className="movie-share__icon">
                 <Link to={`/details/${this.props.id}`}>
                   <span className="details">Details</span>
                 </Link>
-              </a>
             </div>
             <div className="Card-Bot">
               <h1>{this.props.name}</h1>
