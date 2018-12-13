@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
 import "./App.css";
 
 class App extends Component {
@@ -17,14 +16,6 @@ class App extends Component {
             placeholder="Password"
             class="email"
           />
-
-          <a href="#">
-            <div class="btn">Sign In</div>
-          </a>
-
-          <a href="#">
-            <div id="btn2">Sign Up</div>
-          </a>
         </div>
       </form>
     );

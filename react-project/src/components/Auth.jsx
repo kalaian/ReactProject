@@ -1,5 +1,4 @@
 import auth0 from "auth0-js";
-import Routes from "./Routes";
 import history from "./history";
 
 class Auth {

@@ -25,6 +25,7 @@ class ItemCard extends React.Component {
     return (
       <StyledCard>
         <img
+          alt=""
           className="char-image"
           src={`${this.props.thumbnail.path}.${this.props.thumbnail.extension}`}
         />
@@ -36,7 +37,7 @@ class ItemCard extends React.Component {
                 onClick={() => this.saveDataToLocalStorage(this.props.id)}
               />
               <br />
-              <a className="movie-share__icon">
+              <a href="/" className="movie-share__icon">
                 <Link to={`/details/${this.props.id}`}>
                   <span className="details">Details</span>
                 </Link>

@@ -18,12 +18,12 @@ class Profile extends Component {
 
   render() {
     const { profile } = this.state;
-    this.state.profile = this.props;
     return (
       <ProfileBody>
         <h1>Profile Info</h1>
         <ProfileCard>
           <img
+            alt=""
             className="char-image"
             src={profile.picture}
           />

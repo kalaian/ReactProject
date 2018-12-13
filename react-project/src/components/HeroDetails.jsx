@@ -1,6 +1,5 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import styled from "styled-components";
-import Auth from "./Auth";
 
 export class HeroDetails extends Component {
   state = {
@@ -34,6 +33,7 @@ export class HeroDetails extends Component {
         <h1>Hero comics details</h1>
         <DetailsCard>
           <img
+            alt=""
             className="char-image"
             src={`${this.state.image.path}.${this.state.image.extension}`}
           />
