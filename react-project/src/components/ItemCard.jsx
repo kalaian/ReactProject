@@ -13,7 +13,7 @@ class ItemCard extends React.Component {
     let heroIdsArr = JSON.parse(localStorage.getItem("hero_ids"));
 
     if (heroIdsArr.includes(id)) {
-      heroIdsArr.splice(heroIdsArr.indexOf(id), 1)
+      heroIdsArr.splice(heroIdsArr.indexOf(id), 1);
     } else {
       heroIdsArr.push(id);
     }
@@ -31,13 +31,10 @@ class ItemCard extends React.Component {
         <div className="Picture">
           <div className="color-overlay">
             <div className="movie-share">
-              <a
-                className="movie-share__icon"
-                href="#"
+              <input
+                type="checkbox"
                 onClick={() => this.saveDataToLocalStorage(this.props.id)}
-              >
-                <span className="add-favourites">Add to Favourites</span>
-              </a>
+              />
               <br />
               <a className="movie-share__icon">
                 <Link to={`/details/${this.props.id}`}>
@@ -49,7 +46,6 @@ class ItemCard extends React.Component {
               <h1>{this.props.name}</h1>
               <p>{this.props.description}</p>
             </div>
-            {/* <button onClick={() => this.saveDataToLocalStorage(this.props.id)}>Remove from favourites</button> */}
           </div>
         </div>
       </StyledCard>
@@ -73,6 +69,73 @@ const StyledCard = styled.div`
     transform: scale(1.02);
     filter: brightness(1.2) saturate(110%);
     transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  input[type="checkbox"] {
+    transform: translate3D(-50%, -50%, 0);
+    left: 50%;
+    top: 50%;
+
+    &:before,
+    &:after {
+      content: "";
+      cursor: pointer;
+      background-image: url(http://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Heart_coraz%C3%B3n.svg/2000px-Heart_coraz%C3%B3n.svg.png);
+      background-size: cover;
+      height: 30px;
+      width: 30px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate3D(-50%, -50%, 0);
+      filter: grayscale(100%);
+    }
+
+    &:after {
+      opacity: 0;
+      filter: grayscale(0%);
+    }
+
+    &:checked {
+      &:before {
+        filter: grayscale(0%);
+      }
+
+      &:after {
+        animation: ascend ease-in-out 800ms;
+      }
+    }
+  }
+
+  @-webkit-keyframes ascend {
+    0% {
+      transform: translate3D(-50%, -50%, 0);
+      opacity: 1;
+    }
+    100% {
+      transform: translate3D(-50%, -200%, 0);
+      opacity: 0;
+    }
+  }
+  @-moz-keyframes ascend {
+    0% {
+      transform: translate3D(-50%, -50%, 0);
+      opacity: 1;
+    }
+    100% {
+      transform: translate3D(-50%, -200%, 0);
+      opacity: 0;
+    }
+  }
+  @keyframes ascend {
+    0% {
+      transform: translate3D(-50%, -50%, 0);
+      opacity: 1;
+    }
+    100% {
+      transform: translate3D(-50%, -200%, 0);
+      opacity: 0;
+    }
   }
   .color-overlay {
     height: 100%;
