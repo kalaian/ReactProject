@@ -13,17 +13,22 @@ class Favs extends Component {
   loadCharactersDetails = () => {
     const idFromStorage = JSON.parse(localStorage.getItem("hero_ids"));
     console.log(idFromStorage);
-    fetch(
-      `https://gateway.marvel.com:443/v1/public/characters/${idFromStorage}?apikey=80a0c3d7955eb762515f55d1412ed8cb`
-    )
-      .then(response => response.json())
-      .then(
-        hero => console.log(hero)
-        // this.setState({
-        //   results: hero.data.results[0],
-        //   image: hero.data.results[0].thumbnail
-        // })
-      );
+
+    for(let key in idFromStorage){
+      fetch(
+        `https://gateway.marvel.com:443/v1/public/characters/${idFromStorage[key]}?apikey=80a0c3d7955eb762515f55d1412ed8cb`
+      )
+        .then(response => response.json())
+        .then(
+          hero => 
+          // console.log(hero)
+          this.setState({
+            results: hero.data.results[0],
+            image: hero.data.results[0].thumbnail
+          })
+        );
+    }
+  
   };
 
   render() {
