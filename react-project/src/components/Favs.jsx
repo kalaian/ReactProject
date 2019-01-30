@@ -4,7 +4,8 @@ import styled from "styled-components";
 class Favs extends Component {
   state = {
     results: [],
-    image: []
+    image: [],
+    finalResults: []
   };
   componentWillMount() {
     this.loadCharactersDetails();
@@ -12,54 +13,56 @@ class Favs extends Component {
 
   loadCharactersDetails = () => {
     const idFromStorage = JSON.parse(localStorage.getItem("hero_ids"));
-    console.log(idFromStorage);
 
-    for(let key in idFromStorage){
+    for (let key in idFromStorage) {
       fetch(
-        `https://gateway.marvel.com:443/v1/public/characters/${idFromStorage[key]}?apikey=80a0c3d7955eb762515f55d1412ed8cb`
+        `https://gateway.marvel.com:443/v1/public/characters/${
+          idFromStorage[key]
+        }?apikey=80a0c3d7955eb762515f55d1412ed8cb`
       )
         .then(response => response.json())
-        .then(
-          hero => 
+        .then(hero =>
           // console.log(hero)
           this.setState({
             results: hero.data.results[0],
-            image: hero.data.results[0].thumbnail
+            image: hero.data.results[0].thumbnail,
+            finalResults: hero.data.results
           })
         );
     }
-  
   };
 
   render() {
     return (
       <FavsBody>
         <h1>Hero comics details</h1>
-        <FavsCard>
-          <img
-            alt=""
-            className="char-image"
-            src={`${this.state.image.path}.${this.state.image.extension}`}
-          />
-          <div className="Picture">
-            <div className="color-overlay">
-              <div className="movie-share">
-                {/* <a
+        {this.state.finalResults.map(result => (
+          <FavsCard {...result}>
+            <img
+              alt=""
+              className="char-image"
+              src={`${this.state.image.path}.${this.state.image.extension}`}
+            />
+            <div className="Picture">
+              <div className="color-overlay">
+                <div className="movie-share">
+                  {/* <a
                   className="movie-share__icon"
                   href="#"
                   onClick={() => localStorage.removeItem("hero_id")}
                 > */}
                   <span className="add-favourites">Remove from favourites</span>
-                {/* </a> */}
-                <br />
-              </div>
-              <div className="Card-Bot">
-                <h1>{this.state.results.name}</h1>
-                <p>{this.state.results.description}</p>
+                  {/* </a> */}
+                  <br />
+                </div>
+                <div className="Card-Bot">
+                  <h1>{this.state.results.name}</h1>
+                  <p>{this.state.results.description}</p>
+                </div>
               </div>
             </div>
-          </div>
-        </FavsCard>
+          </FavsCard>
+        ))}
       </FavsBody>
     );
   }

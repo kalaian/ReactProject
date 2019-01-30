@@ -5,10 +5,7 @@ import Auth from "./Auth";
 export default class CardList extends Component {
   state = {
     results: []
-    // auth: new Auth()
   };
-
-  componentWillMount() {}
 
   componentDidMount() {
     Auth.handleAuthentication();
