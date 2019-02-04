@@ -1,37 +1,32 @@
 import React, { Component } from "react";
 import ItemCard from "./ItemCard";
 import Auth from "./Auth";
+import { connect } from "react-redux";
+import { fetchHeroes } from "../actions/ItemsAction";
 
-export default class CardList extends Component {
-  state = {
-    results: []
-  };
-
+class CardList extends Component {
   componentDidMount() {
     Auth.handleAuthentication();
 
-    this.loadCharacters();
+    this.props.fetchHeroes();
   }
-
-  loadCharacters = () => {
-    fetch(
-      "https://gateway.marvel.com/v1/public/characters?apikey=80a0c3d7955eb762515f55d1412ed8cb"
-    )
-      .then(response => response.json())
-      .then(json =>
-        this.setState({
-          results: json.data.results
-        })
-      );
-  };
 
   render() {
     return (
       <div>
-        {this.state.results.map(result => (
+        {this.props.heroes.map(result => (
           <ItemCard {...result} />
         ))}
       </div>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  heroes: state.heroes.items
+});
+
+export default connect(
+  mapStateToProps,
+  { fetchHeroes }
+)(CardList);
