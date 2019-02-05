@@ -1,30 +1,32 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import { connect } from "react-redux";
+import { fetchHeroesDetails } from "../actions/ItemsAction";
 
 export class HeroDetails extends Component {
-  state = {
-    results: [],
-    image: []
-  };
-
+  // state = {
+  //   results: [],
+  //   image: []
+  // };
 
   componentWillMount() {
-    this.loadCharactersDetails();
+    // this.loadCharactersDetails();
+    this.props.fetchHeroesDetails();
   }
 
   loadCharactersDetails = () => {
-    fetch(
-      `https://gateway.marvel.com:443/v1/public/characters/${
-        this.props.match.params.id
-      }?apikey=80a0c3d7955eb762515f55d1412ed8cb`
-    )
-      .then(response => response.json())
-      .then(hero =>
-        this.setState({
-          results: hero.data.results[0].comics,
-          image: hero.data.results[0].thumbnail
-        })
-      );
+    // fetch(
+    //   `https://gateway.marvel.com:443/v1/public/characters/${
+    //     this.props.match.params.id
+    //   }?apikey=80a0c3d7955eb762515f55d1412ed8cb`
+    // )
+    //   .then(response => response.json())
+    //   .then(hero =>
+    //     this.setState({
+    //       results: hero.data.results[0].comics,
+    //       image: hero.data.results[0].thumbnail
+    //     })
+    //   );
   };
 
   render() {
@@ -35,15 +37,15 @@ export class HeroDetails extends Component {
           <img
             alt=""
             className="char-image"
-            src={`${this.state.image.path}.${this.state.image.extension}`}
+            src={`${this.props.image.path}.${this.props.image.extension}`}
           />
           <div className="Picture">
             <div className="color-overlay">
               <div className="movie-share" />
               <div className="Card-Bot">
-                <h1>Available: {this.state.results.available}</h1>
+                <h1>Available: {this.props.results.available}</h1>
                 <p>
-                  ResourceURI: <a>{this.state.results.collectionURI}</a>
+                  ResourceURI: <a>{this.props.results.collectionURI}</a>
                 </p>
               </div>
             </div>
@@ -130,4 +132,11 @@ const DetailsCard = styled.div`
     }
   }
 `;
-export default HeroDetails;
+const mapStateToProps = state => ({
+  results: state.heroes.results,
+  image: state.heroes.image
+});
+export default connect(
+  mapStateToProps,
+  { fetchHeroesDetails }
+)(HeroDetails);

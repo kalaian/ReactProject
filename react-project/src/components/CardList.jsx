@@ -13,11 +13,11 @@ class CardList extends Component {
 
   render() {
     return (
-      <div>
+      <>
         {this.props.heroes.map(result => (
           <ItemCard {...result} />
         ))}
-      </div>
+      </>
     );
   }
 }
