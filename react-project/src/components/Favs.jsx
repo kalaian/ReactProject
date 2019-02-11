@@ -1,47 +1,23 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import { connect } from "react-redux";
+import { fetchFavs } from "../actions/ItemsAction";
 
 class Favs extends Component {
-  state = {
-    results: [],
-    image: [],
-    finalResults: []
-  };
   componentWillMount() {
-    this.loadCharactersDetails();
+    this.props.fetchFavs();
   }
-
-  loadCharactersDetails = () => {
-    const idFromStorage = JSON.parse(localStorage.getItem("hero_ids"));
-
-    for (let key in idFromStorage) {
-      fetch(
-        `https://gateway.marvel.com:443/v1/public/characters/${
-          idFromStorage[key]
-        }?apikey=80a0c3d7955eb762515f55d1412ed8cb`
-      )
-        .then(response => response.json())
-        .then(hero =>
-          // console.log(hero)
-          this.setState({
-            results: hero.data.results[0],
-            image: hero.data.results[0].thumbnail,
-            finalResults: hero.data.results
-          })
-        );
-    }
-  };
 
   render() {
     return (
       <FavsBody>
         <h1>Hero comics details</h1>
-        {this.state.finalResults.map(result => (
+        {this.props.finalResults.map(result => (
           <FavsCard {...result}>
             <img
               alt=""
               className="char-image"
-              src={`${this.state.image.path}.${this.state.image.extension}`}
+              src={`${this.props.image.path}.${this.props.image.extension}`}
             />
             <div className="Picture">
               <div className="color-overlay">
@@ -56,8 +32,8 @@ class Favs extends Component {
                   <br />
                 </div>
                 <div className="Card-Bot">
-                  <h1>{this.state.results.name}</h1>
-                  <p>{this.state.results.description}</p>
+                  <h1>{this.props.results.name}</h1>
+                  <p>{this.props.results.description}</p>
                 </div>
               </div>
             </div>
@@ -145,4 +121,12 @@ const FavsCard = styled.div`
     }
   }
 `;
-export default Favs;
+const mapStateToProps = state => ({
+  results: state.heroes.results,
+  image: state.heroes.image,
+  finalResults: state.heroes.finalResults
+});
+export default connect(
+  mapStateToProps,
+  { fetchFavs }
+)(Favs);

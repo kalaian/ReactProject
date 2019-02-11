@@ -4,30 +4,9 @@ import { connect } from "react-redux";
 import { fetchHeroesDetails } from "../actions/ItemsAction";
 
 export class HeroDetails extends Component {
-  // state = {
-  //   results: [],
-  //   image: []
-  // };
-
   componentWillMount() {
-    // this.loadCharactersDetails();
-    this.props.fetchHeroesDetails();
+    this.props.fetchHeroesDetails(this.props.match.params.id);
   }
-
-  loadCharactersDetails = () => {
-    // fetch(
-    //   `https://gateway.marvel.com:443/v1/public/characters/${
-    //     this.props.match.params.id
-    //   }?apikey=80a0c3d7955eb762515f55d1412ed8cb`
-    // )
-    //   .then(response => response.json())
-    //   .then(hero =>
-    //     this.setState({
-    //       results: hero.data.results[0].comics,
-    //       image: hero.data.results[0].thumbnail
-    //     })
-    //   );
-  };
 
   render() {
     return (

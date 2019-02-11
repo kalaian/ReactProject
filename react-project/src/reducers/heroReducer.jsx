@@ -1,9 +1,14 @@
-import { FETCH_HEROES, FETCH_HEROES_DETAILS } from "../types/constants";
+import {
+  FETCH_HEROES,
+  FETCH_HEROES_DETAILS,
+  FETCH_FAVS
+} from "../types/constants";
 
 const initialState = {
   items: [],
   results: [],
-  image: []
+  image: [],
+  finalResults: []
 };
 
 export default (state = initialState, action) => {
@@ -17,8 +22,16 @@ export default (state = initialState, action) => {
     case FETCH_HEROES_DETAILS:
       return {
         ...state,
-        results: action.payload,
-        image: action.payload
+        results: action.results,
+        image: action.image
+      };
+
+    case FETCH_FAVS:
+      return {
+        ...state,
+        results: action.results,
+        image: action.image,
+        finalResults: action.finalResults
       };
 
     default:

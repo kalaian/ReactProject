@@ -1,2 +1,3 @@
 export const FETCH_HEROES = "FETCH_HEROES";
 export const FETCH_HEROES_DETAILS = "FETCH_HEROES_DETAILS";
+export const FETCH_FAVS = "FETCH_FAVS";

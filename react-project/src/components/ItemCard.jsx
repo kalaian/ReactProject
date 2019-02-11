@@ -33,13 +33,14 @@ class ItemCard extends React.Component {
           <div className="color-overlay">
             <div className="movie-share">
               <input
+                key={this.saveDataToLocalStorage}
                 type="checkbox"
                 onClick={() => this.saveDataToLocalStorage(this.props.id)}
               />
               <br />
-                <Link to={`/details/${this.props.id}`}>
-                  <span className="details">Details</span>
-                </Link>
+              <Link to={`/details/${this.props.id}`}>
+                <span className="details">Details</span>
+              </Link>
             </div>
             <div className="Card-Bot">
               <h1>{this.props.name}</h1>

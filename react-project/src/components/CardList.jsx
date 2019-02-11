@@ -15,7 +15,7 @@ class CardList extends Component {
     return (
       <>
         {this.props.heroes.map(result => (
-          <ItemCard {...result} />
+          <ItemCard key={fetch.results} {...result} />
         ))}
       </>
     );
