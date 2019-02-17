@@ -4,9 +4,7 @@ import { Link } from "react-router-dom";
 
 class ItemCard extends React.Component {
   componentDidMount() {
-    if (JSON.parse(localStorage.getItem("hero_ids")).length < 0) {
-      localStorage.setItem("hero_ids", JSON.stringify([]));
-    }
+    localStorage.setItem("hero_ids", JSON.stringify([]));
   }
 
   saveDataToLocalStorage = id => {

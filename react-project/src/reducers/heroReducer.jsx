@@ -6,9 +6,9 @@ import {
 
 const initialState = {
   items: [],
-  results: [],
-  image: [],
-  finalResults: []
+  hero: [],
+  data: [],
+  image: []
 };
 
 export default (state = initialState, action) => {
@@ -22,16 +22,16 @@ export default (state = initialState, action) => {
     case FETCH_HEROES_DETAILS:
       return {
         ...state,
-        results: action.results,
+        hero: action.hero,
         image: action.image
       };
 
     case FETCH_FAVS:
       return {
         ...state,
-        results: action.results,
+        hero: action.hero,
         image: action.image,
-        finalResults: action.finalResults
+        data: action.data
       };
 
     default:

@@ -8,7 +8,7 @@ export const fetchHeroes = () => dispatch => {
   fetch(
     "https://gateway.marvel.com/v1/public/characters?apikey=80a0c3d7955eb762515f55d1412ed8cb"
   )
-    .then(response => response.json())
+    .then(heroes => heroes.json())
     .then(heroes =>
       dispatch({
         type: FETCH_HEROES,
@@ -21,11 +21,11 @@ export const fetchHeroesDetails = id => dispatch => {
   fetch(
     `https://gateway.marvel.com:443/v1/public/characters/${id}?apikey=80a0c3d7955eb762515f55d1412ed8cb`
   )
-    .then(response => response.json())
+    .then(heroes => heroes.json())
     .then(heroes =>
       dispatch({
         type: FETCH_HEROES_DETAILS,
-        results: heroes.data.results[0].comics,
+        hero: heroes.data.results[0].comics,
         image: heroes.data.results[0].thumbnail
       })
     );
@@ -40,13 +40,13 @@ export const fetchFavs = () => dispatch => {
         idFromStorage[key]
       }?apikey=80a0c3d7955eb762515f55d1412ed8cb`
     )
-      .then(response => response.json())
+      .then(heroes => heroes.json())
       .then(heroes =>
         dispatch({
           type: FETCH_FAVS,
-          results: heroes.data.results[0],
+          hero: heroes.data.results[0],
           image: heroes.data.results[0].thumbnail,
-          finalResults: heroes.data.results
+          data: heroes.data.results
         })
       );
   }

@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { fetchFavs } from "../actions/ItemsAction";
 
 class Favs extends Component {
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchFavs();
   }
 
@@ -12,8 +12,8 @@ class Favs extends Component {
     return (
       <FavsBody>
         <h1>Hero comics details</h1>
-        {this.props.finalResults.map(result => (
-          <FavsCard {...result}>
+        {localStorage.getItem("hero_ids") !== null ? (
+          <FavsCard>
             <img
               alt=""
               className="char-image"
@@ -22,23 +22,29 @@ class Favs extends Component {
             <div className="Picture">
               <div className="color-overlay">
                 <div className="movie-share">
-                  {/* <a
-                  className="movie-share__icon"
-                  href="#"
-                  onClick={() => localStorage.removeItem("hero_id")}
-                > */}
-                  <span className="add-favourites">Remove from favourites</span>
-                  {/* </a> */}
-                  <br />
+                  <a
+                    className="movie-share__icon"
+                    href="#"
+                    onClick={() => localStorage.removeItem("hero_ids")}
+                  >
+                    <br />
+                    <span className="add-favourites">
+                      Remove from favourites
+                    </span>
+                  </a>
                 </div>
                 <div className="Card-Bot">
-                  <h1>{this.props.results.name}</h1>
-                  <p>{this.props.results.description}</p>
+                  <h1>{this.props.hero.name}</h1>
+                  <p>{this.props.hero.description}</p>
                 </div>
               </div>
             </div>
           </FavsCard>
-        ))}
+        ) : (
+          <div>
+            <p>No favs available</p>
+          </div>
+        )}
       </FavsBody>
     );
   }
@@ -122,9 +128,9 @@ const FavsCard = styled.div`
   }
 `;
 const mapStateToProps = state => ({
-  results: state.heroes.results,
+  hero: state.heroes.hero,
   image: state.heroes.image,
-  finalResults: state.heroes.finalResults
+  data: state.heroes.data
 });
 export default connect(
   mapStateToProps,

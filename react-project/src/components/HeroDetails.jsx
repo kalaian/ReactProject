@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { fetchHeroesDetails } from "../actions/ItemsAction";
 
 export class HeroDetails extends Component {
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchHeroesDetails(this.props.match.params.id);
   }
 
@@ -22,10 +22,8 @@ export class HeroDetails extends Component {
             <div className="color-overlay">
               <div className="movie-share" />
               <div className="Card-Bot">
-                <h1>Available: {this.props.results.available}</h1>
-                <p>
-                  ResourceURI: <a>{this.props.results.collectionURI}</a>
-                </p>
+                <h1>Available: {this.props.hero.available}</h1>
+                <p>ResourceURI: {this.props.hero.collectionURI}</p>
               </div>
             </div>
           </div>
@@ -70,12 +68,6 @@ const DetailsCard = styled.div`
     justify-content: space-between;
   }
 
-  .add-favourites {
-    color: white;
-    text-decoration: none;
-    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
-      1px 1px 0 #000;
-  }
   .details {
     color: white;
     text-decoration: none;
@@ -94,16 +86,12 @@ const DetailsCard = styled.div`
     width: 100%;
   }
 
-  .movie-share {
-    padding: 1em;
-    text-align: right;
-    text-decoration: none;
-  }
-
   .Card-Bot {
     min-height: 45%;
     padding: 0 15px 15px;
-    word-wrap: break-word p {
+    word-wrap: break-word;
+
+    p {
       color: #b0b0b0;
     }
     h1 {
@@ -112,7 +100,7 @@ const DetailsCard = styled.div`
   }
 `;
 const mapStateToProps = state => ({
-  results: state.heroes.results,
+  hero: state.heroes.hero,
   image: state.heroes.image
 });
 export default connect(
